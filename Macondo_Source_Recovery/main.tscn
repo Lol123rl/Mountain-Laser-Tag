@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/BattleManager.gd" id="1_battle"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="2_player"]
+
+[sub_resource type="CapsuleShape3D" id="Capsule_player"]
+radius = 0.4
+height = 1.6
+
+[sub_resource type="BoxShape3D" id="Box_floor"]
+size = Vector3(80, 1, 80)
+
+[sub_resource type="BoxMesh" id="Box_gun"]
+size = Vector3(0.18, 0.18, 0.8)
+
+[sub_resource type="StandardMaterial3D" id="Mat_gun"]
+albedo_color = Color(0.08, 0.12, 0.14, 1)
+metallic = 0.35
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="Box_floor_mesh"]
+size = Vector3(80, 1, 80)
+
+[node name="MountainLaserTagRecovered" type="Node3D"]
+script = ExtResource("1_battle")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-55, -25, 0)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("Box_floor_mesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("Box_floor")
+
+[node name="CameraRig" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)
+script = ExtResource("2_player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraRig"]
+shape = SubResource("Capsule_player")
+
+[node name="Head" type="Node3D" parent="CameraRig"]
+position = Vector3(0, 1.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig/Head"]
+current = true
+
+[node name="Gun" type="Node3D" parent="CameraRig"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraRig/Gun"]
+mesh = SubResource("Box_gun")
+material_override = SubResource("Mat_gun")

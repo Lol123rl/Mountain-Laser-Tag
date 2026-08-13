@@ -1,0 +1,8 @@
+Upload the CONTENTS of this folder to the ROOT of your GitHub repository.
+
+Important:
+1. Keep your existing README.md.
+2. Upload project.godot, main.tscn, SOURCE_RECOVERY.md, .gitignore, scripts/, and recovered_history/.
+3. Do NOT upload a .godot folder or the giant .exe.
+4. Commit the files.
+5. On Macondo, resubmit for review and state that the original project folder was lost, but genuine recovered development source and historical versions have now been added to the repository; Hackatime remains the independent development record.
